@@ -8,7 +8,10 @@ environment:
       target: x86_64-pc-windows-msvc
 
 install:
-  - cmd: appveyor-retry choco install gnupg-modern
+  - ps: Get-WmiObject -list
+  - ps: Get-WmiObject -Class win32_operatingsystem 
+  - ps: Get-WmiObject -Class Win32_processor
+  - cmd: appveyor-retry choco install gnupg-modern --version 2.2.5
   - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
   - rustup-init -yv --default-toolchain %channel% --default-host %target%
   - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
