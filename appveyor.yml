@@ -8,8 +8,8 @@ environment:
       target: x86_64-pc-windows-msvc
 
 install:
-  - ps: Get-WmiObject -list
-  - ps: Get-WmiObject -Class win32_operatingsystem 
+  - ps: Get-WmiObject -List
+  - ps: Get-WmiObject -Class win32_operatingSystem 
   - ps: Get-WmiObject -Class Win32_processor
   - cmd: appveyor-retry choco install gnupg-modern --version 2.2.5
   - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
