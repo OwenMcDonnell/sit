@@ -13,10 +13,10 @@ install:
   - ps: |
         $path = [Environment]::GetEnvironmentVariable("path", "machine")
         write-host $path
-        $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager' }) -join ';'
-        $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code' }) -join ';'
-        $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Tools\Octopus' }) -join ';'
-        $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\' }) -join ';'
+        $newPath = ($path.Split(';') | Where-Object { $_ -e 'C:\ProgramData\chocolatey\bin' }) -join ';'
+        # $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code' }) -join ';'
+        # $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Tools\Octopus' }) -join ';'
+        # $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\' }) -join ';'
         write-host $newPath
         [Environment]::SetEnvironmentVariable("path", $newPath, "machine")
         
