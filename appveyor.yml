@@ -11,9 +11,11 @@ install:
   - ps: Get-WmiObject -Class win32_operatingSystem 
   - ps: Get-WmiObject -Class Win32_processor
   - ps: |
-        $path = '[Environment]::GetEnvironmentVariable("path", "machine")'
+        $path = [Environment]::GetEnvironmentVariable("path", "machine")
+        write-host $path
         $newPath = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager' }) -join ';'
-        '[Environment]::SetEnvironmentVariable("path", $newPath, "machine")'
+        write-host $newPath
+        [Environment]::SetEnvironmentVariable("path", $newPath, "machine")
         
   - cmd: choco install gpg4win
   #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
