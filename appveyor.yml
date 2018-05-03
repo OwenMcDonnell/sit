@@ -10,8 +10,9 @@ environment:
 install:
   - ps: Get-WmiObject -Class win32_operatingSystem 
   - ps: Get-WmiObject -Class Win32_processor
+  - ps: Install-ChocolateyPackage 'gnupg-modern' 'exe' '/SILENT' 'https://www.gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.7_20180502.exe'
   #- cmd: choco install gpg4win -y
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   #- ps: Invoke-WebRequest -Uri 'https://files.gpg4win.org/gpg4win-3.1.0.exe' -outfile gpg4win-3.1.0.exe
   #- ls
   #- ps: Start-Process -FilePath "$env:appveyor_build_folder/gpg4win.exe" -ArgumentList "/S"
