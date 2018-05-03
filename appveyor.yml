@@ -13,7 +13,8 @@ install:
   #- cmd: choco install gpg4win
   - ps: Invoke-WebRequest -Uri 'https://files.gpg4win.org/gpg4win-3.1.0.exe' -OutFile $env:appveyor_build_folder/gpg4win.exe
   - ls
-  - cmd: %appveyor_build_folder%/gpg4win.exe /S
+  - ps: Start-Process -FilePath "$env:appveyor_build_folder/gpg4win.exe" -ArgumentList "/S"
+  #- cmd: %appveyor_build_folder%/gpg4win.exe /S
   - dir "C:/program files (x86)"
   #- ps: Invoke-Command -ScriptBlock {$env:appveyor_build_folder/gnupg.exe /S /v /qn}
   - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
