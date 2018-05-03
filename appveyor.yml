@@ -10,12 +10,12 @@ environment:
 install:
   - ps: Get-WmiObject -Class win32_operatingSystem 
   - ps: Get-WmiObject -Class Win32_processor
-  #- cmd: choco install gpg4win
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - ps: Invoke-WebRequest -Uri 'https://files.gpg4win.org/gpg4win-3.1.0.exe' -outfile gpg4win-3.1.0.exe
-  - ls
+  - cmd: choco install gpg4win -y
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  #- ps: Invoke-WebRequest -Uri 'https://files.gpg4win.org/gpg4win-3.1.0.exe' -outfile gpg4win-3.1.0.exe
+  #- ls
   #- ps: Start-Process -FilePath "$env:appveyor_build_folder/gpg4win.exe" -ArgumentList "/S"
-  - gpg4win-3.1.0.exe /S /qn
+  #- gpg4win-3.1.0.exe /S /qn
   - dir "C:/program files (x86)"
   #- ps: Invoke-Command -ScriptBlock {$env:appveyor_build_folder/gnupg.exe /S /v /qn}
   - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
