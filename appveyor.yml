@@ -11,10 +11,10 @@ install:
   - ps: Get-WmiObject -Class win32_operatingSystem 
   - ps: Get-WmiObject -Class Win32_processor
   - cmd: choco install gpg4win
-  #- ps: Invoke-WebRequest -Uri 'https://gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.7_20180502.exe' -OutFile $env:appveyor_build_folder/gnupg.exe
-  #- ls
-  #- ps: Start-Process -FilePath "$env:appveyor_build_folder/gnupg.exe" -ArgumentList "/S"
-  #- dir "C:/program files (x86)"
+  - ps: Invoke-WebRequest -Uri 'https://files.gpg4win.org/gpg4win-src-3.1.0.exe' -OutFile $env:appveyor_build_folder/gpg4win.exe
+  - ls
+  - ps: Start-Process -FilePath "$env:appveyor_build_folder/gnupg.exe" -ArgumentList "/S"
+  - dir "C:/program files (x86)"
   #- ps: Invoke-Command -ScriptBlock {$env:appveyor_build_folder/gnupg.exe /S /v /qn}
   - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
   - rustup-init -yv --default-toolchain %channel% --default-host %target%
