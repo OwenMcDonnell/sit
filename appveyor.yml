@@ -8,6 +8,7 @@ environment:
       target: x86_64-pc-windows-msvc
 
 install:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: Get-WmiObject -Class win32_operatingSystem 
   - ps: Get-WmiObject -Class Win32_processor
   - ps: |
